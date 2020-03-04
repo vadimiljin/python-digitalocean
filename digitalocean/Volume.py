@@ -186,7 +186,7 @@ class Volume(BaseAPI):
         Args:
         """
         data = self.get_data("volumes/%s/snapshots/" % self.id)
-        snapshots = list()
+        snapshots = []
         for jsond in data[u'snapshots']:
             snapshot = Snapshot(**jsond)
             snapshot.token = self.token

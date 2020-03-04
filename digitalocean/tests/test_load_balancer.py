@@ -236,7 +236,7 @@ class TestLoadBalancer(BaseTest):
         lb = digitalocean.LoadBalancer(**res['load_balancer'])
         lb.health_check = digitalocean.HealthCheck(**res['load_balancer']['health_check'])
         lb.sticky_sessions = digitalocean.StickySessions(**res['load_balancer']['sticky_sessions'])
-        rules = list()
+        rules = []
         for rule in lb.forwarding_rules:
             rules.append(digitalocean.ForwardingRule(**rule))
         self.assertEqual(lb.id, self.lb_id)

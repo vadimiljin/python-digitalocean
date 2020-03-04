@@ -117,10 +117,7 @@ class Image(BaseAPI):
             Loads by id, or by slug if id is not present or use slug is True.
         """
         identifier = None
-        if use_slug or not self.id:
-            identifier = self.slug
-        else:
-            identifier = self.id
+        identifier = self.slug if use_slug or not self.id else self.id
         if not identifier:
             raise NotFoundError("One of self.id or self.slug must be set.")
         data = self.get_data("images/%s" % identifier)

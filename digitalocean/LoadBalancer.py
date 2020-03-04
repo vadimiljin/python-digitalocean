@@ -173,9 +173,7 @@ class LoadBalancer(BaseAPI):
                 sticky_ses = StickySessions(**load_balancer['sticky_sessions'])
                 setattr(self, attr, sticky_ses)
             elif attr == 'forwarding_rules':
-                rules = list()
-                for rule in load_balancer['forwarding_rules']:
-                    rules.append(ForwardingRule(**rule))
+                rules = [ForwardingRule(**rule) for rule in load_balancer['forwarding_rules']]
                 setattr(self, attr, rules)
             else:
                 setattr(self, attr, load_balancer[attr])
