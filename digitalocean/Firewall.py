@@ -162,14 +162,13 @@ class Firewall(BaseAPI):
         self.droplet_ids = data['firewall']['droplet_ids']
         self.tags = data['firewall']['tags']
 
-        in_rules = list()
-        for rule in data['firewall']['inbound_rules']:
-            in_rules.append(InboundRule(**rule))
+        in_rules = [InboundRule(**rule) for rule in data['firewall']['inbound_rules']]
         self.inbound_rules = in_rules
 
-        out_rules = list()
-        for rule in data['firewall']['outbound_rules']:
-            out_rules.append(OutboundRule(**rule))
+        out_rules = [
+            OutboundRule(**rule) for rule in data['firewall']['outbound_rules']
+        ]
+
         self.outbound_rules = out_rules
 
     def load(self):

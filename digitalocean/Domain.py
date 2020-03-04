@@ -96,8 +96,7 @@ class Domain(BaseAPI):
             "ip_address": self.ip_address,
         }
 
-        domain = self.get_data("domains", type=POST, params=data)
-        return domain
+        return self.get_data("domains", type=POST, params=data)
 
     def get_records(self, params=None):
         """

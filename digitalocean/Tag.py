@@ -51,13 +51,12 @@ class Tag(BaseAPI):
     def __get_resources(self, resources, method):
 
         """ Method used to talk directly to the API (TAGs' Resources) """
-        tagged = self.get_data(
-            'tags/%s/resources' % self.name, params={
-                "resources": resources
-            },
-            type=method,
-        )
-        return tagged
+        return self.get_data(
+                    'tags/%s/resources' % self.name, params={
+                        "resources": resources
+                    },
+                    type=method,
+                )
 
 
     def __add_resources(self, resources):
@@ -108,7 +107,7 @@ class Tag(BaseAPI):
             elif isinstance(resource_to_tag, object_class):
                 res = {"resource_id": str(resource_to_tag.id)}
 
-            if len(res) > 0:
+            if res:
                 res["resource_type"] = resource_type
                 resources_field.append(res)
 
